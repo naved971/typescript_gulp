@@ -1,0 +1,63 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "express/express.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angular2/http-2.0.0-alpha.39.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angular2/angular2.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angular2/test_lib-2.0.0-alpha.39.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angular2/router-2.0.0-alpha.39.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/angular-route.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/angular-animate.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/angular-resource.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/angular-sanitize.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/legacy/angular-scenario-1.2.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/angular-cookies.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "angularjs/angular-mocks.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "gulp/gulp.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "gulp-tsd/gulp-tsd.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "gulp-typescript/gulp-typescript.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    },
+    "node/node.d.ts": {
+      "commit": "f8af639bf29b2b00e5d27ce93c0f046564b8525c"
+    }
+  }
+}
