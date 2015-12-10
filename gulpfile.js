@@ -12,32 +12,96 @@ var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var autoprefixer = require('gulp-autoprefixer');
 var strip = require('gulp-strip-comments');
+var order = require('gulp-order');
+var gulpIgnore = require('gulp-ignore');
+var gulpif = require('gulp-if');
+var streamqueue = require('streamqueue');
+var declare = require('gulp-declare');
 
 
 
+var d = {
+
+	src: 'public/ts/**/*.ts',
+	ts_Compiled_Js: 'public/ts_Compiled_Js/**/*.js',
+	minifiedJs: 'public/js/',
+	ts_Compiled: "public/ts/"
+}
+
+var jsExt = '/**/*.js';
+
+// 
+// var fileOrderPath = [
+// 	d.ts_Compiled_Js + '1app_module' + jsExt,
+// 	d.ts_Compiled_Js + 'app_controller' + jsExt
+// ];
 
 
 
 gulp.task('compile', function () {
-	return gulp.src(['public/ts/**/*.ts'])
-		.pipe(typescript())
-		.pipe(gulp.dest('public/ts_Compiled_Js'))
+	return gulp.src([d.src])
+		.pipe(typescript({
+
+			"module": "amd"
+
+
+		})).pipe(strip())
+		.pipe(gulp.dest('public/ts_Compiled_Js')).pipe(concat('scripts.min.js'))
+		.pipe(declare({
+			namespace: 'App',
+			noRedeclare: true // Avoid duplicate declarations 
+		}))
+	//.pipe(uglify())
+		.pipe(gulp.dest(d.minifiedJs))
+		.pipe(browserSync.reload({ stream: true }))
+
+
 });
 
 
+var compressing = false;
 
 
 
 gulp.task('scripts', function () {
-	return gulp.src(['public/ts_Compiled_Js/**/*.js'])
-  				  .pipe(concat('scripts.min.js')).
-					  				  pipe(strip())
-	//	.pipe(uglify())
-		.pipe(gulp.dest('public/js'))
-		.pipe(browserSync.reload({ stream: true }));
+
+
+	//	gulp.src('./public/js/app_module/*.js'),
+				
+
+	gulp.src('public/ts_Compiled_Js/**/*.js')
+		.pipe(concat('scripts.min.js'))
+		.pipe(declare({
+			namespace: 'App',
+			noRedeclare: true // Avoid duplicate declarations 
+		}))
+	//.pipe(uglify())
+		.pipe(gulp.dest(d.minifiedJs))
+		.pipe(browserSync.reload({ stream: true }))
+
+
+	//  streamqueue({ objectMode: true },
+	// 			
+	// 			
+	// 		
+	// 			
+	// 	)
+	
+	
+	
+	//pipe.pipe(order([fileOrderPath]));
+	
+
+	
+
+	// pipe.pipe(function () {
+	// 	return gulpif(compressing, uglify());
+	// })
+
+
 
 
 });
 
 
-gulp.task('cs',['compile','scripts'])
+gulp.task('cs', ['compile', 'scripts'])

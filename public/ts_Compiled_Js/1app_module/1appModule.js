@@ -1,11 +1,15 @@
-///<reference path="../../../typings/angularjs/angular.d.ts"/>
+
 var App;
 (function (App) {
     var Module;
     (function (Module) {
         var app = angular.module("myApp", []);
-        Module.getModule = function () {
-            return app;
-        };
+        
+        
+        
+        function f1() {
+            alert("hello");
+        }
+        Module.f1 = f1;
     })(Module = App.Module || (App.Module = {}));
 })(App || (App = {}));

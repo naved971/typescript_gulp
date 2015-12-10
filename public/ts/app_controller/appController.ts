@@ -1,7 +1,5 @@
-///<reference path="../../../typings/angularjs/angular.d.ts"/>
 
-///<reference path=".././app_module/appModule.ts"/>
-
+///<reference path=".././all.d.ts"/>
 
 
 module App.Controllers {
@@ -14,13 +12,17 @@ module App.Controllers {
 
 	class CustomerController {
 		constructor(scope: ICustomerScope) {
+			debugger;
 			scope.userId = 101;
 			scope.name = "Khan"
 
 		}
 	}
+	debugger;
+//console.log(	App.Module);
 
-	App.Module.getModule().controller('CustomerController', CustomerController);
+
+//	App.Module.getModule().controller('CustomerController', CustomerController);
 
 
 }
