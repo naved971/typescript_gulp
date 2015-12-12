@@ -5,7 +5,7 @@ var jshint = require('gulp-jshint');
 var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
 var path = require('path');
-var concat = require('gulp-concat');
+
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var sourcemaps = require('gulp-sourcemaps');
@@ -16,7 +16,9 @@ var order = require('gulp-order');
 var gulpIgnore = require('gulp-ignore');
 var gulpif = require('gulp-if');
 var streamqueue = require('streamqueue');
+
 var declare = require('gulp-declare');
+var concat = require('gulp-concat');
 
 
 
@@ -39,69 +41,38 @@ var jsExt = '/**/*.js';
 
 
 gulp.task('compile', function () {
-	return gulp.src([d.src])
-		.pipe(typescript({
+	
+	gulp.src([d.src])
 
-			"module": "amd"
+		.pipe(typescript())
+		// .pipe(declare({
+		// 	namespace: 'App',
+		// 	noRedeclare: false // Avoid duplicate declarations 
+		// 	//,processName: declare.processNameByPath
+		// }))
+		.pipe(strip())
 
-
-		})).pipe(strip())
-		.pipe(gulp.dest('public/ts_Compiled_Js')).pipe(concat('scripts.min.js'))
-		.pipe(declare({
-			namespace: 'App',
-			noRedeclare: true // Avoid duplicate declarations 
-		}))
-	//.pipe(uglify())
-		.pipe(gulp.dest(d.minifiedJs))
-		.pipe(browserSync.reload({ stream: true }))
-
-
-});
-
-
-var compressing = false;
-
-
-
-gulp.task('scripts', function () {
-
-
-	//	gulp.src('./public/js/app_module/*.js'),
-				
-
-	gulp.src('public/ts_Compiled_Js/**/*.js')
 		.pipe(concat('scripts.min.js'))
-		.pipe(declare({
-			namespace: 'App',
-			noRedeclare: true // Avoid duplicate declarations 
-		}))
-	//.pipe(uglify())
+
 		.pipe(gulp.dest(d.minifiedJs))
 		.pipe(browserSync.reload({ stream: true }))
 
 
-	//  streamqueue({ objectMode: true },
-	// 			
-	// 			
-	// 		
-	// 			
-	// 	)
-	
-	
-	
-	//pipe.pipe(order([fileOrderPath]));
-	
-
-	
-
-	// pipe.pipe(function () {
-	// 	return gulpif(compressing, uglify());
-	// })
-
-
-
-
 });
+
+
+gulp.task('models', function() {
+  // Define each model as a property of a namespace according to its filename
+  gulp.src(['public/ts/**/*.ts'])		.pipe(typescript())		.pipe(strip())
+	// .pipe(declare({
+	//   namespace:'myApp',
+	//   noRedeclare: false // Avoid duplicate declarations
+	// }))
+	.pipe(concat('models.js')) // Combine into a single file
+	.pipe(gulp.dest('public/build/js/'));
+});
+
+
 
 
 gulp.task('cs', ['compile', 'scripts'])

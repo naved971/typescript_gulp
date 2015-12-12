@@ -4,15 +4,17 @@
 	</head>
 	
 	
-	<body ng-app="myApp" ng-cloak="">
+	<body ng-app="myApp" ng-cloak="" ng-controller="CustomerController  as a">
 		
-			{{3+3}}		
+			{{a.customername}}		
 		
+		
+		<input type="button" value="load "  ng-click="a.clickMe()"/>
 	</body>
 	
 
 	<script src="bower_components/angular/angular.js"></script>
-	<script src="js/scripts.min.js"></script>
+	<script src="build/js/models.js"></script>
 
 	
 
